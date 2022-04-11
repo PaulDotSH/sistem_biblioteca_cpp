@@ -1,0 +1,4 @@
+/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/ninja/linux/ninja -G Ninja /home/administrator/CLionProjects/siste_biblioteca_cpp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/administrator/CLionProjects/siste_biblioteca_cpp/cmake-build-debug
