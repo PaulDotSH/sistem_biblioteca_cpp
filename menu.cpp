@@ -71,6 +71,39 @@ void menu::AfisareDeleteOptiuni() {
         std::cin.ignore();
     } while(optiune < 0 || optiune > 3);
 
+    bool ret;
+    switch (optiune) {
+        case 0:
+            return;
+        case 1:
+        {
+            int index;
+            std::cin >> index;
+            std::cin.ignore();
+            ret = biblioteca.DeleteCarteByIndex(index);
+        }
+            break;
+        case 2:
+        {
+            std::string isbn;
+            std::cin >> isbn;
+            ret = biblioteca.DeleteCarteByISBN(isbn);
+        }
+            break;
+        case 3:
+        {
+            char inp[MAX_STR_LEN];
+            std::cin.getline(inp,MAX_STR_LEN);
+            std::string tmp = inp;
+            ret = biblioteca.DeleteCarteByCriteriu([&tmp](Carte& carte){
+                for (auto& autor: carte.Authors)
+                    if (autor == tmp) return true;
+                return false;
+            });
+        }
+    }
+
+    ret ? std::cout << "Nu au fost gasite carti care sa satisfaca conditia\n" : std::cout<<"Carti sterse cu succes\n";
     //TODO: delete dupa ce a selectat userul
 }
 
@@ -81,10 +114,10 @@ void menu::AfisareSearchOptiuni() {
                   "1. Search dupa index\n" <<
                   "2. Search dupa ISBN\n" <<
                   "3. Search dupa Autor\n" <<
-                  "4. Search dupa Gen" <<
-                  "5. Search dupa Pret" <<
-                  "6. Search dupa Numarul de pagini" <<
-                  "7. Search dupa disponibilitate";
+                  "4. Search dupa Gen\n" <<
+                  "5. Search dupa Pret\n" <<
+                  "6. Search dupa Numarul de pagini\n" <<
+                  "7. Search dupa disponibilitate\n";
         std::cin >> optiune;
         ClearScreen();
         std::cin.ignore();
@@ -95,11 +128,75 @@ void menu::AfisareSearchOptiuni() {
             return;
         case 1:
         {
+            int index;
+            std::cin>>index;
+            std::cin.ignore();
+            biblioteca.DisplayCarteByCriteriu([&index](Carte& carte){
+                if (index--==0) return true;
+                return false;
+            });
+        }
+            break;
+        case 2:
+        {
             std::string isbn;
             std::cin >> isbn;
-            biblioteca.DeleteCarteByISBN(isbn);
-            return;
+            biblioteca.DisplayCarteByCriteriu([&isbn](Carte& carte){
+                return carte.ISBN == isbn;
+            });
         }
+            break;
+        case 3:
+        {
+            char inp[MAX_STR_LEN];
+            std::cin.getline(inp,MAX_STR_LEN);
+            std::string tmp = inp;
+            biblioteca.DisplayCarteByCriteriu([&tmp](Carte& carte){
+                for (auto& autor : carte.Authors)
+                    if (autor==tmp) return true;
+                return false;
+            });
+        }
+            break;
+        case 4:
+        {
+            char inp[MAX_STR_LEN];
+            std::cin.getline(inp,MAX_STR_LEN);
+            std::string tmp = inp;
+            biblioteca.DisplayCarteByCriteriu([&tmp](Carte& carte){
+                for (auto& gen : carte.Genres)
+                    if (gen==tmp) return true;
+                return false;
+            });
+        }
+            break;
+        case 5:
+        {
+            double pret;
+            std::cin>>pret;
+            std::cin.ignore();
+            biblioteca.DisplayCarteByCriteriu([&pret](Carte& carte){
+                return carte.Price == pret;
+            });
+        }
+            break;
+        case 6:
+        {
+            unsigned int NrPagini;
+            std::cin>>NrPagini;
+            std::cin.ignore();
+            biblioteca.DisplayCarteByCriteriu([&NrPagini](Carte& carte){
+               return carte.Pages = NrPagini;
+            });
+        }
+            break;
+        case 7:
+        {
+            biblioteca.DisplayCarteByCriteriu([](Carte& carte){
+               return carte.Available != 0;
+            });
+        }
+            break;
     }
 
     //TODO: search dupa ce a selectat userul

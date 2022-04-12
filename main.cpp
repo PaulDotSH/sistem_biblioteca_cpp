@@ -56,10 +56,6 @@ int main() {
     menu::GetInstance().biblioteca.ReadCarti();
     menu::GetInstance().DisplayHelpMessage();
     menu::GetInstance().StartLoop();
-//    Biblioteca biblioteca("Nume Test");
-//    biblioteca.ReadCarti(NUME_DB);
-
-
 
     return 0;
 }
