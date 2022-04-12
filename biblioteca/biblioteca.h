@@ -13,12 +13,12 @@
 class Biblioteca {
 public:
     explicit Biblioteca(std::string& nume);
-    //fa-l din ala nebun care daca ii dai parametrii construieste cartea direct aici
-//    template< class... Args>
-//    void Append(Args&&... args);
+    explicit Biblioteca(const char* nume);
 
+
+    //Fa inca un append care foloseste list.emplace_back pt carte
     void Append(Carte& carte);
-    void AppendNewCarte();
+    void Append();
 
     Carte* FindCarteByIsbn(std::string& isbn);
     Carte* FindCarteByIndex(size_t index);
@@ -32,8 +32,13 @@ public:
     bool BorrowByCriteriu(bool (*criteriu) (Carte&));
     bool ReturnByISBN(std::string& ISBN);
 
-    void ReadCarti();
-    void SaveCarti();
+    void ReadCarti(std::istream&);
+    void ReadCarti(const char*);
+    void ReadCarti(const std::string&);
+
+    void SaveCarti(std::ostream&);
+    void SaveCarti(const std::string&);
+    void SaveCarti(const char*);
 private:
     std::string nume; //folosit pt nume fisier
     std::list<Carte> carti;

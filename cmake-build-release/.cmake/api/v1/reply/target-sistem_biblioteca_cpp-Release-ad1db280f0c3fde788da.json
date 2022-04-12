@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "siste_biblioteca_cpp"
+			"path" : "sistem_biblioteca_cpp"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-O3 -DNDEBUG"
 				},
 				{
 					"fragment" : "-std=gnu++20"
@@ -59,13 +59,13 @@
 			]
 		}
 	],
-	"id" : "siste_biblioteca_cpp::@6890427a1f51a3e7e1df",
+	"id" : "sistem_biblioteca_cpp::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -75,8 +75,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "siste_biblioteca_cpp",
-	"nameOnDisk" : "siste_biblioteca_cpp",
+	"name" : "sistem_biblioteca_cpp",
+	"nameOnDisk" : "sistem_biblioteca_cpp",
 	"paths" : 
 	{
 		"build" : ".",

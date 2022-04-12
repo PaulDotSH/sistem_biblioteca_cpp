@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: sistem_biblioteca_cpp
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -39,13 +39,13 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug/
+cmake_ninja_workdir = /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release/
 
 #############################################
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug && /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake --regenerate-during-build -S/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp -B/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
+  COMMAND = cd /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release && /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake --regenerate-during-build -S/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp -B/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -57,7 +57,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug && /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release && /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -72,33 +72,33 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_sistem_biblioteca_cpp: phony || CMakeFiles/sistem_biblioteca_cpp.dir
 
-build CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Debug /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/main.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
+build CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Release /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/main.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
   DEP_FILE = CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o.d
-  FLAGS = -g -std=gnu++20
+  FLAGS = -O3 -DNDEBUG -std=gnu++20
   OBJECT_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   TARGET_COMPILE_PDB = CMakeFiles/sistem_biblioteca_cpp.dir/
   TARGET_PDB = sistem_biblioteca_cpp.pdb
 
-build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/io.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Debug /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/io.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
+build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/io.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Release /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/io.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
   DEP_FILE = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/io.cpp.o.d
-  FLAGS = -g -std=gnu++20
+  FLAGS = -O3 -DNDEBUG -std=gnu++20
   OBJECT_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca
   TARGET_COMPILE_PDB = CMakeFiles/sistem_biblioteca_cpp.dir/
   TARGET_PDB = sistem_biblioteca_cpp.pdb
 
-build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Debug /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/carte.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
+build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Release /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/carte.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
   DEP_FILE = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o.d
-  FLAGS = -g -std=gnu++20
+  FLAGS = -O3 -DNDEBUG -std=gnu++20
   OBJECT_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca
   TARGET_COMPILE_PDB = CMakeFiles/sistem_biblioteca_cpp.dir/
   TARGET_PDB = sistem_biblioteca_cpp.pdb
 
-build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Debug /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/biblioteca.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
+build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o: CXX_COMPILER__sistem_biblioteca_cpp_Release /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/biblioteca/biblioteca.cpp || cmake_object_order_depends_target_sistem_biblioteca_cpp
   DEP_FILE = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o.d
-  FLAGS = -g -std=gnu++20
+  FLAGS = -O3 -DNDEBUG -std=gnu++20
   OBJECT_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca
   TARGET_COMPILE_PDB = CMakeFiles/sistem_biblioteca_cpp.dir/
@@ -112,8 +112,8 @@ build CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o: CXX_COMP
 #############################################
 # Link the executable sistem_biblioteca_cpp
 
-build sistem_biblioteca_cpp: CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Debug CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/io.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o
-  FLAGS = -g
+build sistem_biblioteca_cpp: CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Release CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/io.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o
+  FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/sistem_biblioteca_cpp.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -130,7 +130,7 @@ build sistem_biblioteca_cpp: CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Debug 
 # =============================================================================
 
 #############################################
-# Folder: /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
+# Folder: /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release
 
 build all: phony sistem_biblioteca_cpp
 

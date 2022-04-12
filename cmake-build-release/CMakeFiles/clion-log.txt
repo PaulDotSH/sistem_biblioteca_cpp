@@ -1,4 +1,4 @@
-/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/ninja/linux/ninja -G Ninja /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp
+/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/ninja/linux/ninja -G Ninja /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
+-- Build files have been written to: /media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release

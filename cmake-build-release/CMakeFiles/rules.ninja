@@ -7,7 +7,7 @@
 
 # =============================================================================
 # Project: sistem_biblioteca_cpp
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 # =============================================================================
 
@@ -22,7 +22,7 @@ rule CUSTOM_COMMAND
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__sistem_biblioteca_cpp_Debug
+rule CXX_COMPILER__sistem_biblioteca_cpp_Release
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/bin/c++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -32,7 +32,7 @@ rule CXX_COMPILER__sistem_biblioteca_cpp_Debug
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Debug
+rule CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Release
   command = $PRE_LINK && /usr/bin/c++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -42,7 +42,7 @@ rule CXX_EXECUTABLE_LINKER__sistem_biblioteca_cpp_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake --regenerate-during-build -S/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp -B/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
+  command = /home/administrator/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/bin/cmake/linux/bin/cmake --regenerate-during-build -S/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp -B/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-release
   description = Re-running CMake...
   generator = 1
 

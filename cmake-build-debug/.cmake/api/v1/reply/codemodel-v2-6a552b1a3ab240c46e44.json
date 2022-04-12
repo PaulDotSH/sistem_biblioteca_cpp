@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sistem_biblioteca_cpp",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "sistem_biblioteca_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sistem_biblioteca_cpp-Debug-d22ce8d55d0c988b9571.json",
+					"name" : "sistem_biblioteca_cpp",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug",
+		"source" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
