@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/administrator/CLionProjects/siste_biblioteca_cpp/cmake-build-debug"
+			"value" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -579,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/administrator/CLionProjects/siste_biblioteca_cpp"
+			"value" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -819,7 +819,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "siste_biblioteca_cpp"
+			"value" : "sistem_biblioteca_cpp"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1102,7 +1102,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "siste_biblioteca_cpp_BINARY_DIR",
+			"name" : "sistem_biblioteca_cpp_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1111,10 +1111,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/administrator/CLionProjects/siste_biblioteca_cpp/cmake-build-debug"
+			"value" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug"
 		},
 		{
-			"name" : "siste_biblioteca_cpp_IS_TOP_LEVEL",
+			"name" : "sistem_biblioteca_cpp_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1126,7 +1126,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "siste_biblioteca_cpp_SOURCE_DIR",
+			"name" : "sistem_biblioteca_cpp_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1135,7 +1135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/administrator/CLionProjects/siste_biblioteca_cpp"
+			"value" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp"
 		}
 	],
 	"kind" : "cache",

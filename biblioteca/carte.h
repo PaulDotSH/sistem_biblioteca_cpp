@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "json.hpp"
 
 class Carte {
 public:
@@ -25,9 +26,16 @@ public:
     Carte(std::string& isbn, std::string& title, std::vector<std::string>& authors,
           std::vector<std::string>& genres, int pages, double price, int total, int available);
 
+    Carte(nlohmann::json& json);
+
     Carte();
 
     void Display();
+
+    nlohmann::json GetJson();
+
+//    inline void to_json(nlohmann::json& j, const Carte& carte);
+//    inline void from_json(const nlohmann::json& j, Carte& carte);
 
     //Carte() = delete;
 

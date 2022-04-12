@@ -5,6 +5,7 @@
 #include "biblioteca.h"
 #include <functional>
 #include <iostream>
+#include "fstream"
 
 Biblioteca::Biblioteca(std::string& Nume) : nume(Nume) {}
 
@@ -123,10 +124,71 @@ Carte *Biblioteca::FindCarteByCriteriu(bool (*criteriu)(Carte &)) {
     return nullptr;
 }
 
-void Biblioteca::AppendNewCarte() {
+//Ia o noua carte de la tastatura
+void Biblioteca::Append() {
     carti.emplace_back(Carte());
     this->size++;
 }
+
+void Biblioteca::SaveCarti(std::ostream& stream) {
+    nlohmann::json json;
+    for (Carte& carte : carti) {
+        json["Carti"].push_back(carte.GetJson());
+    }
+    json["size"] = this->size;
+
+    for (Carte& carte : utilizator) {
+        json["User"].push_back(carte.GetJson());
+    }
+    json["userSize"] = this->userSize;
+
+    stream<<json;
+}
+
+void Biblioteca::SaveCarti(const char* file) {
+    std::fstream stream;
+    stream.open(file, std::fstream::out);
+    SaveCarti(stream);
+}
+
+void Biblioteca::SaveCarti(const std::string& file) {
+    std::fstream stream;
+    stream.open(file, std::fstream::out);
+    SaveCarti(stream);
+}
+
+void Biblioteca::ReadCarti(std::istream& stream) {
+    nlohmann::json json;
+    stream >> json;
+
+    nlohmann::json outJson;
+    for (auto& it : json["Carti"]) {
+        outJson = nlohmann::json::parse(it.dump());
+        carti.emplace_back(outJson);
+    }
+
+    for (auto& it : json["User"]) {
+        outJson = nlohmann::json::parse(it.dump());
+        utilizator.emplace_back(outJson);
+    }
+
+    this->size = json["size"];
+    this->userSize = json["userSize"];
+}
+
+void Biblioteca::ReadCarti(const std::string& file) {
+    std::fstream stream;
+    stream.open(file, std::fstream::in);
+    ReadCarti(stream);
+}
+
+void Biblioteca::ReadCarti(const char* file) {
+    std::fstream stream;
+    stream.open(file, std::fstream::in);
+    ReadCarti(stream);
+}
+
+Biblioteca::Biblioteca(const char* Nume) : nume(Nume) {}
 
 
 

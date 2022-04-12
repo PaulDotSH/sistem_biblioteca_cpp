@@ -1,18 +1,13 @@
 #include <iostream>
+#include "fstream"
 #include "biblioteca/carte.h"
 #include "biblioteca/biblioteca.h"
+#include "biblioteca/json.hpp"
 
 //https://github.com/nlohmann/json#serialization--deserialization
 //https://www.geeksforgeeks.org/list-cpp-stl/
 
 int main() {
-//    Carte::Carte()
-//
-//    std::cout << "Hello, World!" << std::endl;
-//    IO::TestFunc();
-
-//    std::string& isbn, std::string& title, std::vector<std::string>& authors,
-//            std::vector<std::string>& genres, int pages, double price, int total, int available
 
     std::string ISBN = "ISBN";
     std::string Title = "Titlu";
@@ -33,14 +28,25 @@ int main() {
     int total = 50;
     int available = 40;
 
-    //Carte c;
 
     Carte c{ISBN,Title,authors,genres,pages,price,total,available};
 
     std::string nume_biblioteca = "Biblioteca 1";
     Biblioteca b(nume_biblioteca);
     b.Append(c);
-    std::cout<<"test\n";
+
+    b.BorrowByISBN(c.ISBN);
+//    b.ReturnByISBN(c.ISBN);
+
+
+    b.SaveCarti("ceva.txt");
+
+    std::fstream stream;
+    stream.open("ceva.txt", std::fstream::in);
+
+    std::string nume = "test";
+    Biblioteca b2(nume);
+    b2.ReadCarti(stream);
 
     return 0;
 }

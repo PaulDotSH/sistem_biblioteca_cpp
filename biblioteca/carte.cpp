@@ -90,3 +90,33 @@ Carte::Carte() {
     std::cout << "Introdu numarul de carti in stoc\n";
     std::cin >> this->Available;
 }
+
+nlohmann::json Carte::GetJson() {
+    nlohmann::json json;
+    json["isbn"] = ISBN;
+    json["title"] = Title;
+    json["authors"] = Authors;
+    json["genres"] = Genres;
+    json["pages"] = Pages;
+    json["price"] = Price;
+    json["available"] = Available;
+    json["Total"] = Total;
+    return json;
+};
+
+Carte::Carte(nlohmann::json& json) {
+    ISBN = json["isbn"];
+    Title = json["title"];
+    for (auto& it : json["authors"]) {
+        Authors.push_back(it.get<std::string>());
+    }
+    for (auto& it : json["genres"]) {
+        Genres.push_back(it.get<std::string>());
+    }
+    Pages = json["pages"];
+    Price = json["price"];
+    Available = json["available"];
+    Total = json["Total"];
+}
+
+
