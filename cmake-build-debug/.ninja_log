@@ -28,3 +28,8 @@
 1	2389	1649791402854591104	CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/carte.cpp.o	ee6244cf8bdc497c
 1	3455	1649791403918586256	CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o	3e617f07993c692e
 3455	3574	1649791404038585709	sistem_biblioteca_cpp	150eb019f045ff94
+1	1724	1649791511214090504	CMakeFiles/sistem_biblioteca_cpp.dir/main.cpp.o	33d48f319b47411
+1	1817	1649791511310090055	CMakeFiles/sistem_biblioteca_cpp.dir/menu.cpp.o	ab6cbcace94ad4e5
+1817	1943	1649791511434089473	sistem_biblioteca_cpp	150eb019f045ff94
+1	3319	1649791610957619016	CMakeFiles/sistem_biblioteca_cpp.dir/biblioteca/biblioteca.cpp.o	3e617f07993c692e
+3319	3454	1649791611097618349	sistem_biblioteca_cpp	150eb019f045ff94

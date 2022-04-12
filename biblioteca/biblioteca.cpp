@@ -58,9 +58,12 @@ void Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& cri
     int index=0;
     for (auto& carte : carti) {
         //modifica ca la ambele sa fie << overloading
-        std::cout<<"Index: "<<index++<<"\n";
         if (criteriu(carte))
+        {
             carte.Display();
+            std::cout<<"Index: "<<index<<"\n";
+        }
+        index++;
     }
     std::cout<<"--------------\n";
 }
