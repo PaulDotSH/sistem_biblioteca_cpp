@@ -15,7 +15,6 @@ Carte* Biblioteca::FindCarteByIsbn(std::string &isbn) {
     return nullptr;
 }
 
-
 void Biblioteca::Display() {
     int index=0;
     for (auto& carte : carti) {
@@ -55,7 +54,7 @@ bool Biblioteca::DeleteCarteByISBN(std::string &isbn) {
     return true;
 }
 
-void Biblioteca::DisplayCarteByCriteriu(bool (*criteriu)(Carte&)) {
+void Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     int index=0;
     for (auto& carte : carti) {
         //modifica ca la ambele sa fie << overloading
@@ -78,7 +77,7 @@ bool Biblioteca::BorrowByISBN(std::string& ISBN) {
     return true;
 }
 
-bool Biblioteca::BorrowByCriteriu(bool (*criteriu)(Carte &)) {
+bool Biblioteca::BorrowByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     for (auto& carte : carti) {
         if (criteriu(carte)) {
             carte.Available--;
@@ -118,7 +117,7 @@ void Biblioteca::Append(Carte &carte) {
     this->size++;
 }
 
-Carte *Biblioteca::FindCarteByCriteriu(bool (*criteriu)(Carte &)) {
+Carte *Biblioteca::FindCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     for (auto& carte : carti)
         if (criteriu(carte)) return &carte;
     return nullptr;
@@ -204,6 +203,19 @@ void Biblioteca::ReadCarti() {
 
 void Biblioteca::SaveCarti() {
     SaveCarti(this->nume);
+}
+
+bool Biblioteca::DeleteCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
+    auto i=carti.begin();
+    for (auto& carte : carti) {
+        if (criteriu(carte)) {
+            carti.erase(i);
+            this->size--;
+            return false;
+        }
+        i++;
+    }
+    return true;
 }
 
 Biblioteca::Biblioteca() = default;
