@@ -6,7 +6,7 @@
 
 void Carte::Display()  {
     std::cout << "ISBN: " << ISBN << "\nTitlu: " << Title << "\nPagini: " << Pages << "\nPret: " << Price
-              << "\nStoc: " << Available << "\nTotal" << Total << "\nAutori: ";
+              << "\nStoc: " << Available << "\nTotal: " << Total << "\nAutori: ";
 
     for (auto& autor : Authors) {
         std::cout<<autor<<";";
@@ -38,9 +38,8 @@ Carte::~Carte() {
 
 #define MAX_LEN 100
 
-//pt read de la tastatura
+//Daca nu primim parametrii, o sa citim de la tastatura inputul
 Carte::Carte() {
-    //Carte c{ISBN,Title,authors,genres,pages,price,total,available};
     char inp[MAX_LEN];
     {
         std::cout << "Introdu ISBN-ul cartii:\n";
@@ -56,8 +55,8 @@ Carte::Carte() {
 
     std::cout << "Introdu numarul de autori\n";
     std::cin >> authorsNr;
-    std::cin.get();
-    Genres.reserve(authorsNr);
+    std::cin.get(); //de fiecare data cand dam cin la un int trb dat cin.get sau cin.ignore ca altfel o sa ne ia un empty string
+    Authors.reserve(authorsNr); //alocam direct nr de elemente deoarece il stim deja
     authorsNr++;
 
     for (int i = 1; i < authorsNr; i++) {
@@ -89,6 +88,7 @@ Carte::Carte() {
 
     std::cout << "Introdu numarul de carti in stoc\n";
     std::cin >> this->Available;
+    std::cin.get();
 }
 
 nlohmann::json Carte::GetJson() {

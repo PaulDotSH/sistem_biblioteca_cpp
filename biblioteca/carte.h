@@ -22,7 +22,6 @@ public:
     unsigned int Total;
     unsigned int Available;
 
-    //Constructor
     Carte(std::string& isbn, std::string& title, std::vector<std::string>& authors,
           std::vector<std::string>& genres, int pages, double price, int total, int available);
 
@@ -34,14 +33,8 @@ public:
 
     nlohmann::json GetJson();
 
-//    inline void to_json(nlohmann::json& j, const Carte& carte);
-//    inline void from_json(const nlohmann::json& j, Carte& carte);
-
-    //Carte() = delete;
-
     ~Carte();
 private:
 };
-
 
 #endif //SISTE_BIBLIOTECA_CPP_CARTE_H

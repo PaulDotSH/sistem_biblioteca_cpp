@@ -12,6 +12,7 @@
 //mergem pe un sistem similar cu cel din go, in care vom folosi un bool pentru a returna 1 cand avem o eroare
 class Biblioteca {
 public:
+    Biblioteca();
     explicit Biblioteca(std::string& nume);
     explicit Biblioteca(const char* nume);
 
@@ -34,13 +35,18 @@ public:
 
     void ReadCarti(std::istream&);
     void ReadCarti(const char*);
+    void ReadCarti();
     void ReadCarti(const std::string&);
 
     void SaveCarti(std::ostream&);
     void SaveCarti(const std::string&);
     void SaveCarti(const char*);
-private:
+    void SaveCarti();
+
     std::string nume; //folosit pt nume fisier
+
+    ~Biblioteca();
+private:
     std::list<Carte> carti;
     size_t size = 0; //in append faci asta++
 
