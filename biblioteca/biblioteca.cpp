@@ -179,16 +179,34 @@ void Biblioteca::ReadCarti(std::istream& stream) {
 void Biblioteca::ReadCarti(const std::string& file) {
     std::fstream stream;
     stream.open(file, std::fstream::in);
+    if (stream.fail()) return;
     ReadCarti(stream);
 }
 
 void Biblioteca::ReadCarti(const char* file) {
     std::fstream stream;
     stream.open(file, std::fstream::in);
+    if (stream.fail()) return;
     ReadCarti(stream);
 }
 
 Biblioteca::Biblioteca(const char* Nume) : nume(Nume) {}
+
+//Cam useless deoarece oricum listele se sterg singure
+Biblioteca::~Biblioteca() {
+    this->carti.clear();
+    this->utilizator.clear();
+}
+
+void Biblioteca::ReadCarti() {
+    ReadCarti(this->nume);
+}
+
+void Biblioteca::SaveCarti() {
+    SaveCarti(this->nume);
+}
+
+Biblioteca::Biblioteca() = default;
 
 
 
