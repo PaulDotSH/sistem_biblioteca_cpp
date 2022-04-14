@@ -15,7 +15,7 @@ void Carte::Display()  {
     for (auto& gen : Genres) {
         std::cout<<gen<<";";
     }
-    std::cout<<"\n";
+    std::cout<<"\n--------------\n";
 }
 
 Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &authors, std::vector<std::string> &genres,
@@ -60,7 +60,7 @@ Carte::Carte() {
     authorsNr++;
 
     for (int i = 1; i < authorsNr; i++) {
-        std::cout << "Introdu genul cu numarul " << i << "\n";
+        std::cout << "Introdu autorul cu numarul " << i << "\n";
         std::cin.getline(inp,MAX_LEN);
         this->Authors.emplace_back(inp);
     }

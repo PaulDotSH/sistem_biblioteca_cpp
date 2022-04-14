@@ -65,7 +65,6 @@ void Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& cri
         }
         index++;
     }
-    std::cout<<"--------------\n";
 }
 
 bool Biblioteca::BorrowByISBN(std::string& ISBN) {
