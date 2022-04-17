@@ -22,7 +22,7 @@ void Biblioteca::Display() {
         std::cout<<"Index: "<<index++<<"\n";
         carte.Display();
     }
-    std::cout<<"--------------\n";
+//    std::cout<<"--------------\n";
 }
 
 Carte *Biblioteca::FindCarteByIndex(size_t index) {
