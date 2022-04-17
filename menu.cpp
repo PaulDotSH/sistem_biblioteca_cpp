@@ -186,7 +186,7 @@ void menu::AfisareSearchOptiuni() {
             std::cin>>NrPagini;
             std::cin.ignore();
             biblioteca.DisplayCarteByCriteriu([&NrPagini](Carte& carte){
-               return carte.Pages = NrPagini;
+               return carte.Pages == NrPagini;
             });
         }
             break;
