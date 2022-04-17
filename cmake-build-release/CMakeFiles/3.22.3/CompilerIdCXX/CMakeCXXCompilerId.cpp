@@ -301,22 +301,6 @@
   # define COMPILER_VERSION_PATCH DEC(__ARMCOMPILER_VERSION     % 10000)
 # define COMPILER_VERSION_INTERNAL DEC(__ARMCOMPILER_VERSION)
 
-#elif defined(__clang__) && __has_include(<hip/hip_version.h>)
-# define COMPILER_ID "ROCMClang"
-# if defined(_MSC_VER)
-#  define SIMULATE_ID "MSVC"
-# elif defined(__clang__)
-#  define SIMULATE_ID "Clang"
-# elif defined(__GNUC__)
-#  define SIMULATE_ID "GNU"
-# endif
-# if defined(__clang__) && __has_include(<hip/hip_version.h>)
-#  include <hip/hip_version.h>
-#  define COMPILER_VERSION_MAJOR DEC(HIP_VERSION_MAJOR)
-#  define COMPILER_VERSION_MINOR DEC(HIP_VERSION_MINOR)
-#  define COMPILER_VERSION_PATCH DEC(HIP_VERSION_PATCH)
-# endif
-
 #elif defined(__clang__)
 # define COMPILER_ID "Clang"
 # if defined(_MSC_VER)
@@ -751,7 +735,7 @@ char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";
 #  define CXX_STD __cplusplus
 #endif
 
-const char* info_language_dialect_default = "INFO" ":" "dialect_default["
+const char* info_language_standard_default = "INFO" ":" "standard_default["
 #if CXX_STD > 202002L
   "23"
 #elif CXX_STD > 201703L
@@ -764,6 +748,16 @@ const char* info_language_dialect_default = "INFO" ":" "dialect_default["
   "11"
 #else
   "98"
+#endif
+"]";
+
+const char* info_language_extensions_default = "INFO" ":" "extensions_default["
+#if (defined(__clang__) || defined(__GNUC__) || defined(__xlC__) ||           \
+     defined(__TI_COMPILER_VERSION__)) &&                                     \
+  !defined(__STRICT_ANSI__)
+  "ON"
+#else
+  "OFF"
 #endif
 "]";
 
@@ -789,7 +783,8 @@ int main(int argc, char* argv[])
 #if defined(__CRAYXT_COMPUTE_LINUX_TARGET)
   require += info_cray[argc];
 #endif
-  require += info_language_dialect_default[argc];
+  require += info_language_standard_default[argc];
+  require += info_language_extensions_default[argc];
   (void)argv;
   return require;
 }

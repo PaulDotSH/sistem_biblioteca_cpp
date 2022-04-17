@@ -5,9 +5,6 @@
 #include "biblioteca/json.hpp"
 #include "menu.h"
 
-//https://github.com/nlohmann/json#serialization--deserialization
-//https://www.geeksforgeeks.org/list-cpp-stl/
-
 //void foo() {
 //    std::string ISBN = "ISBN";
 //    std::string Title = "Titlu";
