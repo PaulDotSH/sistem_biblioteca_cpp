@@ -60,8 +60,8 @@ void Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& cri
         //modifica ca la ambele sa fie << overloading
         if (criteriu(carte))
         {
-            carte.Display();
             std::cout<<"Index: "<<index<<"\n";
+            carte.Display();
         }
         index++;
     }
