@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp/cmake-build-debug",
-		"source" : "/media/administrator/c7b3562e-7e25-4218-bf38-64c479d931a8/git-stuff/sistem_biblioteca_cpp"
+		"build" : "/home/admin/git-stuff/sistem_biblioteca_cpp/cmake-build-debug",
+		"source" : "/home/admin/git-stuff/sistem_biblioteca_cpp"
 	},
 	"version" : 
 	{
