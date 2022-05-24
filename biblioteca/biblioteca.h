@@ -58,5 +58,4 @@ private:
     size_t userSize = 0;
 };
 
-
 #endif //SISTE_BIBLIOTECA_CPP_BIBLIOTECA_H

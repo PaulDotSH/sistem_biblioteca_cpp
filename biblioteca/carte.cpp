@@ -1,4 +1,5 @@
-//
+//        {   for (auto& autor : autori)
+
 // Created by administrator on 4/9/22.
 //
 
@@ -30,10 +31,6 @@ Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &au
     for (const auto& str : genres) {
         Genres.emplace_back(str);
     }
-}
-
-Carte::~Carte() {
-
 }
 
 #define MAX_LEN 100
@@ -102,7 +99,7 @@ nlohmann::json Carte::GetJson() {
     json["available"] = Available;
     json["Total"] = Total;
     return json;
-};
+}
 
 Carte::Carte(nlohmann::json& json) {
     ISBN = json["isbn"];

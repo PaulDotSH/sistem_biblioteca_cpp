@@ -25,7 +25,7 @@ public:
     Carte(std::string& isbn, std::string& title, std::vector<std::string>& authors,
           std::vector<std::string>& genres, int pages, double price, int total, int available);
 
-    Carte(nlohmann::json& json);
+    explicit Carte(nlohmann::json& json);
 
     Carte();
 
@@ -33,7 +33,7 @@ public:
 
     nlohmann::json GetJson();
 
-    ~Carte();
+    ~Carte() = default;
 private:
 };
 
