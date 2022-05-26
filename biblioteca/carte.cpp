@@ -5,8 +5,17 @@
 
 #include "carte.h"
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 void Carte::Display()  {
-    std::cout << "ISBN: " << ISBN << "\nTitlu: " << Title << "\nPagini: " << Pages << "\nPret: " << Price
+
+    std::cout << ANSI_COLOR_BLUE << "ISBN: " << ISBN << "\nTitlu: " << Title << "\nPagini: " << Pages << "\nPret: " << Price
               << "\nStoc: " << Available << "\nTotal: " << Total << "\nAutori: ";
 
     for (auto& autor : Authors) {
@@ -16,7 +25,7 @@ void Carte::Display()  {
     for (auto& gen : Genres) {
         std::cout<<gen<<";";
     }
-    std::cout<<"\n--------------\n";
+    std::cout << ANSI_COLOR_RESET << "\n--------------\n";
 }
 
 Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &authors, std::vector<std::string> &genres,
@@ -39,7 +48,7 @@ Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &au
 Carte::Carte() {
     char inp[MAX_LEN];
     {
-        std::cout << "Introdu ISBN-ul cartii:\n";
+        std::cout << ANSI_COLOR_MAGENTA << "Introdu ISBN-ul cartii:\n";
         std::cin.getline(inp,MAX_LEN);
         this->ISBN = inp;
     }
@@ -86,6 +95,7 @@ Carte::Carte() {
     std::cout << "Introdu numarul de carti in stoc\n";
     std::cin >> this->Available;
     std::cin.get();
+    std::cout << ANSI_COLOR_RESET;
 }
 
 nlohmann::json Carte::GetJson() {
