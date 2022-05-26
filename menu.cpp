@@ -6,6 +6,14 @@
 #include <iostream>
 #include "menu.h"
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 void menu::ClearScreen() {
 #ifdef WINDOWS
     system("cls");
@@ -48,24 +56,24 @@ menu::command menu::ParseCommand(const char *cmd) {
 
 menu::command menu::GetUserCommand() {
     char inp[MAX_STR_LEN];
-    std::cout<<"Introdu comanda ta\n";
+    std::cout << ANSI_COLOR_RED << "Introdu comanda ta\n" << ANSI_COLOR_RESET;
     std::cin.getline(inp,MAX_STR_LEN);
     return ParseCommand(inp);
 }
 
 void menu::DisplayHelpMessage() {
-    std::cout << "Scrie o comanda pentru a interactiona cu programul\n" <<
-    "Comenziile prezente momentan sunt:\n" <<
-    "add, delete/del, list, search, borrow, return, load, save/s, quit/q, help\n";
+    std::cout << ANSI_COLOR_RED << "Scrie o comanda pentru a interactiona cu programul\n" << ANSI_COLOR_BLUE
+    "Comenziile prezente momentan sunt:\n" << ANSI_COLOR_GREEN
+    "add, delete/del, list, search, borrow, return, load, save/s, quit/q, help\n" << ANSI_COLOR_RESET;
 }
 
 void menu::AfisareDeleteOptiuni() {
     int optiune;
     do {
-        std::cout << "0. Back\n" <<
+        std::cout << ANSI_COLOR_YELLOW << "0. Back\n" <<
         "1. Delete dupa index\n" <<
         "2. Delete dupa ISBN\n" <<
-        "3. Delete dupa Autor\n";
+        "3. Delete dupa Autor\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
         ClearScreen();
         std::cin.ignore();
@@ -103,21 +111,21 @@ void menu::AfisareDeleteOptiuni() {
         }
     }
 
-    ret ? std::cout << "Nu au fost gasite carti care sa satisfaca conditia\n" : std::cout<<"Carti sterse cu succes\n";
+    ret ? std::cout << ANSI_COLOR_RED << "Nu au fost gasite carti care sa satisfaca conditia\n" << ANSI_COLOR_RESET : std::cout << ANSI_COLOR_GREEN "Carti sterse cu succes\n" << ANSI_COLOR_RESET;
     //TODO: delete dupa ce a selectat userul
 }
 
 void menu::AfisareSearchOptiuni() {
     int optiune;
     do {
-        std::cout << "0. Back\n" <<
+        std::cout << ANSI_COLOR_YELLOW << "0. Back\n" <<
                   "1. Search dupa index\n" <<
                   "2. Search dupa ISBN\n" <<
                   "3. Search dupa Autor\n" <<
                   "4. Search dupa Gen\n" <<
                   "5. Search dupa Pret\n" <<
                   "6. Search dupa Numarul de pagini\n" <<
-                  "7. Search dupa disponibilitate\n";
+                  "7. Search dupa disponibilitate\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
         ClearScreen();
         std::cin.ignore();
@@ -205,8 +213,8 @@ void menu::AfisareSearchOptiuni() {
 void menu::AfisareBorrowOptiuni() {
     int optiune;
     do {
-        std::cout << "0. Back\n" <<
-                  "1. Imprumuta dupa ISBN\n";
+        std::cout << ANSI_COLOR_YELLOW << "0. Back\n" <<
+                  "1. Imprumuta dupa ISBN\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
         ClearScreen();
         std::cin.ignore();
@@ -219,8 +227,8 @@ void menu::AfisareBorrowOptiuni() {
         {
             std::string isbn;
             std::cin >> isbn;
-            biblioteca.BorrowByISBN(isbn) ? std::cout << "Cartea nu a fost gasita sau nu este in stoc\n"
-            : std :: cout << "Ai imprumutat cartea cu succes\n";
+            biblioteca.BorrowByISBN(isbn) ? std::cout << ANSI_COLOR_RED "Cartea nu a fost gasita sau nu este in stoc\n" << ANSI_COLOR_RESET
+            : std :: cout << ANSI_COLOR_GREEN << "Ai imprumutat cartea cu succes\n" << ANSI_COLOR_RESET;
         }
     }
 }
@@ -228,8 +236,8 @@ void menu::AfisareBorrowOptiuni() {
 void menu::AfisareReturnOptiuni() {
     int optiune;
     do {
-        std::cout << "0. Back\n" <<
-                  "1. Returneaza dupa ISBN\n";
+        std::cout << ANSI_COLOR_YELLOW "0. Back\n" <<
+                  "1. Returneaza dupa ISBN\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
         ClearScreen();
         std::cin.ignore();
@@ -242,7 +250,8 @@ void menu::AfisareReturnOptiuni() {
         {
             std::string isbn;
             std::cin >> isbn;
-            biblioteca.ReturnByISBN(isbn) ? std::cout << "Nu ai aceasta carte!\n" : std::cout << "Carte returnata cu succes\n";
+            biblioteca.ReturnByISBN(isbn) ? std::cout << ANSI_COLOR_RED << "Nu ai aceasta carte!\n" << ANSI_COLOR_RESET
+            : std::cout << ANSI_COLOR_GREEN "Carte returnata cu succes\n" << ANSI_COLOR_RESET;
         }
     }
 }
