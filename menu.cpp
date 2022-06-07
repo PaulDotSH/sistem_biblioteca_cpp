@@ -15,7 +15,7 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 void menu::ClearScreen() {
-#ifdef WINDOWS
+#ifdef _WIN32
     system("cls");
 #else
     system("clear");
@@ -94,7 +94,7 @@ void menu::AfisareDeleteOptiuni() {
         case 2:
         {
             std::string isbn;
-            std::cin >> isbn;
+            getline(std::cin,isbn);
             ret = biblioteca.DeleteCarteByISBN(isbn);
         }
             break;
@@ -115,6 +115,7 @@ void menu::AfisareDeleteOptiuni() {
     //TODO: delete dupa ce a selectat userul
 }
 
+//adauga ret = la fiecare si verifica la final
 void menu::AfisareSearchOptiuni() {
     int optiune;
     do {
@@ -148,7 +149,7 @@ void menu::AfisareSearchOptiuni() {
         case 2:
         {
             std::string isbn;
-            std::cin >> isbn;
+            getline(std::cin,isbn);
             biblioteca.DisplayCarteByCriteriu([&isbn](Carte& carte){
                 return carte.ISBN == isbn;
             });
@@ -156,9 +157,8 @@ void menu::AfisareSearchOptiuni() {
             break;
         case 3:
         {
-            char inp[MAX_STR_LEN];
-            std::cin.getline(inp,MAX_STR_LEN);
-            std::string tmp = inp;
+            std::string tmp;
+            getline(std::cin,tmp);
             biblioteca.DisplayCarteByCriteriu([&tmp](Carte& carte){
                 for (auto& autor : carte.Authors)
                     if (autor==tmp) return true;
@@ -168,12 +168,17 @@ void menu::AfisareSearchOptiuni() {
             break;
         case 4:
         {
-            char inp[MAX_STR_LEN];
-            std::cin.getline(inp,MAX_STR_LEN);
-            std::string tmp = inp;
+            std::string tmp;
+            getline(std::cin,tmp);
+//            DINTR UN MOTIV SAU ALTUL NU MERGE CHESTIA ASTA DOAR IN DEBUG MODE SAU COMPILAT CU GCC,
+//            std::cout<<tmp<<"<--\n";
             biblioteca.DisplayCarteByCriteriu([&tmp](Carte& carte){
                 for (auto& gen : carte.Genres)
-                    if (gen==tmp) return true;
+                    if (gen==tmp) {
+                        std::cout << gen << "\n";
+                        return true;
+
+                    }
                 return false;
             });
         }
@@ -226,7 +231,7 @@ void menu::AfisareBorrowOptiuni() {
         case 1:
         {
             std::string isbn;
-            std::cin >> isbn;
+            getline(std::cin,isbn);
             biblioteca.BorrowByISBN(isbn) ? std::cout << ANSI_COLOR_RED "Cartea nu a fost gasita sau nu este in stoc\n" << ANSI_COLOR_RESET
             : std :: cout << ANSI_COLOR_GREEN << "Ai imprumutat cartea cu succes\n" << ANSI_COLOR_RESET;
         }
@@ -249,7 +254,9 @@ void menu::AfisareReturnOptiuni() {
         case 1:
         {
             std::string isbn;
-            std::cin >> isbn;
+            getline(std::cin,isbn);
+            std::cin.ignore();
+//            std::cin.getline(isbn);
             biblioteca.ReturnByISBN(isbn) ? std::cout << ANSI_COLOR_RED << "Nu ai aceasta carte!\n" << ANSI_COLOR_RESET
             : std::cout << ANSI_COLOR_GREEN "Carte returnata cu succes\n" << ANSI_COLOR_RESET;
         }
@@ -277,6 +284,7 @@ void menu::StartLoop() {
                 break;
             case load:
                 biblioteca.ReadCarti();
+                break;
             case quit:
                 return;
             case del:

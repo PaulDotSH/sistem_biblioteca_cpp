@@ -10,10 +10,9 @@
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-void Carte::Display()  {
+void const Carte::Display() const {
 
     std::cout << ANSI_COLOR_BLUE << "ISBN: " << ISBN << "\nTitlu: " << Title << "\nPagini: " << Pages << "\nPret: " << Price
               << "\nStoc: " << Available << "\nTotal: " << Total << "\nAutori: ";
@@ -124,6 +123,31 @@ Carte::Carte(nlohmann::json& json) {
     Price = json["price"];
     Available = json["available"];
     Total = json["Total"];
+}
+
+std::ostream &operator<<(std::ostream &os, const Carte &carte) {
+    // Daca stream-ul este stdout atunci afisam cu culori
+    if (os.rdbuf() == std::cout.rdbuf()) {
+        carte.Display();
+        return os;
+    }
+    os
+    << "ISBN: " << carte.ISBN
+    << "\nTitlu: " << carte.Title
+    << "\nAutori:\n";
+    for (auto& autor : carte.Authors) {
+        os << autor << " ";
+    }
+    os << "\nGenres:\n";
+    for (auto& gen : carte.Genres) {
+        os << gen << " ";
+    }
+    os
+    << "\nPagini: " << carte.Pages
+    << "\nPret: " << carte.Price
+    << "\nTotal: " << carte.Total
+    << "\nStoc: " << carte.Available;
+    return os;
 }
 
 

@@ -9,6 +9,7 @@
 #include "optional"
 #include "carte.h"
 #include <functional>
+#include <ostream>
 
 //mergem pe un sistem similar cu cel din go, in care vom folosi un bool pentru a returna 1 cand avem o eroare
 class Biblioteca {
@@ -30,8 +31,10 @@ public:
     bool DeleteCarteByISBN(std::string& isbn);
     bool DeleteCarteByCriteriu(const std::function <bool (Carte&)>& criteriu);
 
-    void DisplayCarteByCriteriu(const std::function <bool (Carte&)>& criteriu);
-    void Display();
+    bool DisplayCarteByCriteriu(const std::function <bool (Carte&)>& criteriu);
+    void const Display() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Biblioteca &biblioteca);
 
     bool BorrowByISBN(std::string& ISBN);
     bool BorrowByCriteriu(const std::function <bool (Carte&)>& criteriu);
