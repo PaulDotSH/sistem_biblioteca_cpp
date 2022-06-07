@@ -21,6 +21,8 @@ public:
     double Price;
     unsigned int Total;
     unsigned int Available;
+    void const Display() const;
+    friend std::ostream &operator<<(std::ostream &os, const Carte &carte);
 
     Carte(std::string& isbn, std::string& title, std::vector<std::string>& authors,
           std::vector<std::string>& genres, int pages, double price, int total, int available);
@@ -28,8 +30,6 @@ public:
     explicit Carte(nlohmann::json& json);
 
     Carte();
-
-    void Display();
 
     nlohmann::json GetJson();
 

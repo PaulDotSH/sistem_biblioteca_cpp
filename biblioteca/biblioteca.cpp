@@ -15,14 +15,12 @@ Carte* Biblioteca::FindCarteByIsbn(std::string &isbn) {
     return nullptr;
 }
 
-void Biblioteca::Display() {
+void const Biblioteca::Display() const {
     int index=0;
     for (auto& carte : carti) {
-        //modifica ca la ambele sa fie << overloading
         std::cout<<"Index: "<<index++<<"\n";
         carte.Display();
     }
-//    std::cout<<"--------------\n";
 }
 
 Carte *Biblioteca::FindCarteByIndex(size_t index) {
@@ -54,17 +52,19 @@ bool Biblioteca::DeleteCarteByISBN(std::string &isbn) {
     return true;
 }
 
-void Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
+bool Biblioteca::DisplayCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     int index=0;
+    bool ok = false;
     for (auto& carte : carti) {
-        //modifica ca la ambele sa fie << overloading
         if (criteriu(carte))
         {
             std::cout<<"Index: "<<index<<"\n";
+            ok=true;
             carte.Display();
         }
         index++;
     }
+    return ok;
 }
 
 bool Biblioteca::BorrowByISBN(std::string& ISBN) {
@@ -218,6 +218,18 @@ bool Biblioteca::DeleteCarteByCriteriu(const std::function <bool (Carte&)>& crit
         i++;
     }
     return true;
+}
+
+std::ostream &operator<<(std::ostream &os, const Biblioteca &biblioteca) {
+    // Daca stream-ul este stdout atunci afisam cu culori
+    if (os.rdbuf() == std::cout.rdbuf()) {
+        biblioteca.Display();
+        return os;
+    }
+    for (auto& carte : biblioteca.carti) {
+        os << carte << "\n";
+    }
+    return os;
 }
 
 Biblioteca::Biblioteca() = default;
