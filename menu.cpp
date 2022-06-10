@@ -14,6 +14,7 @@
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+// Comanda cls functioneaza pentru windows iar clear pentru sistemele "unix-like"
 void menu::ClearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -22,14 +23,16 @@ void menu::ClearScreen() {
 #endif
 }
 
+// Support pentru std::string dar si pentru cstrings
 menu::command menu::ParseCommand(std::string cmd) {
     return ParseCommand(cmd.c_str());
 }
 
+// Folosindu-ne de enums facem codul mai readable
 menu::command menu::ParseCommand(const char *cmd) {
     if (strcmp(cmd,"add")==0)
         return add;
-    if (strcmp(cmd,"delete")==0 || strcmp(cmd,"del")==0)
+    if (strcmp(cmd,"delete")==0 || strcmp(cmd,"del")==0) // del functioneaza ca un alias pentru delete
         return del;
     if (strcmp(cmd,"list")==0)
         return list;
@@ -52,8 +55,10 @@ menu::command menu::ParseCommand(const char *cmd) {
     return NaC;
 }
 
+// Dimensiune buffer
 #define MAX_STR_LEN 100
 
+// Citeste urmatoarea comanda a utiliozatorului si returneaza un enum cu comanda
 menu::command menu::GetUserCommand() {
     char inp[MAX_STR_LEN];
     std::cout << ANSI_COLOR_RED << "Introdu comanda ta\n" << ANSI_COLOR_RESET;
@@ -61,12 +66,13 @@ menu::command menu::GetUserCommand() {
     return ParseCommand(inp);
 }
 
-void menu::DisplayHelpMessage() {
+inline void menu::DisplayHelpMessage() {
     std::cout << ANSI_COLOR_RED << "Scrie o comanda pentru a interactiona cu programul\n" << ANSI_COLOR_BLUE
     "Comenziile prezente momentan sunt:\n" << ANSI_COLOR_GREEN
     "add, delete/del, list, search, borrow, return, load, save/s, quit/q, help\n" << ANSI_COLOR_RESET;
 }
 
+// Submeniul pentru comanda delete
 void menu::AfisareDeleteOptiuni() {
     int optiune;
     do {
@@ -75,10 +81,11 @@ void menu::AfisareDeleteOptiuni() {
         "2. Delete dupa ISBN\n" <<
         "3. Delete dupa Autor\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
-        ClearScreen();
         std::cin.ignore();
     } while(optiune < 0 || optiune > 3);
 
+    // Folosim un stil similar cu cel din go in care returnam o "eroare" in caz ca o comanda nu s-a executat
+    // cu success
     bool ret;
     switch (optiune) {
         case 0:
@@ -87,7 +94,7 @@ void menu::AfisareDeleteOptiuni() {
         {
             int index;
             std::cin >> index;
-            std::cin.ignore();
+            std::cin.ignore(); // Altfel ramane un trailing \n care da break la orice fgets() sau std::cin.getline()
             ret = biblioteca.DeleteCarteByIndex(index);
         }
             break;
@@ -100,6 +107,7 @@ void menu::AfisareDeleteOptiuni() {
             break;
         case 3:
         {
+            // Alocam buffer-ul pe stack
             char inp[MAX_STR_LEN];
             std::cin.getline(inp,MAX_STR_LEN);
             std::string tmp = inp;
@@ -111,11 +119,11 @@ void menu::AfisareDeleteOptiuni() {
         }
     }
 
-    ret ? std::cout << ANSI_COLOR_RED << "Nu au fost gasite carti care sa satisfaca conditia\n" << ANSI_COLOR_RESET : std::cout << ANSI_COLOR_GREEN "Carti sterse cu succes\n" << ANSI_COLOR_RESET;
-    //TODO: delete dupa ce a selectat userul
+    // De asemenea acest "error handling" se putea face cu un size_t care sa specifice cate carti au satsifacut conditia
+    ret ? std::cout << ANSI_COLOR_RED << "Nu au fost gasite carti care sa satisfaca conditia\n" << ANSI_COLOR_RESET : std::cout << ANSI_COLOR_GREEN "Carte stearsa / carti sterse cu succes\n" << ANSI_COLOR_RESET;
 }
 
-//adauga ret = la fiecare si verifica la final
+// Submeniul pentru comanda search
 void menu::AfisareSearchOptiuni() {
     int optiune;
     do {
@@ -128,7 +136,6 @@ void menu::AfisareSearchOptiuni() {
                   "6. Search dupa Numarul de pagini\n" <<
                   "7. Search dupa disponibilitate\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
-        ClearScreen();
         std::cin.ignore();
     } while(optiune < 0 || optiune > 7);
 
@@ -169,9 +176,7 @@ void menu::AfisareSearchOptiuni() {
         case 4:
         {
             std::string tmp;
-            getline(std::cin,tmp);
-//            DINTR UN MOTIV SAU ALTUL NU MERGE CHESTIA ASTA DOAR IN DEBUG MODE SAU COMPILAT CU GCC,
-//            std::cout<<tmp<<"<--\n";
+            getline(std::cin,tmp); // .
             biblioteca.DisplayCarteByCriteriu([&tmp](Carte& carte){
                 for (auto& gen : carte.Genres)
                     if (gen==tmp) {
@@ -211,17 +216,15 @@ void menu::AfisareSearchOptiuni() {
         }
             break;
     }
-
-    //TODO: search dupa ce a selectat userul
 }
 
+// Submeniul pentru comanda borrow
 void menu::AfisareBorrowOptiuni() {
     int optiune;
     do {
         std::cout << ANSI_COLOR_YELLOW << "0. Back\n" <<
                   "1. Imprumuta dupa ISBN\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
-        ClearScreen();
         std::cin.ignore();
     } while(optiune < 0 || optiune > 1);
 
@@ -238,13 +241,13 @@ void menu::AfisareBorrowOptiuni() {
     }
 }
 
+// Submeniul pentru comanda return
 void menu::AfisareReturnOptiuni() {
     int optiune;
     do {
         std::cout << ANSI_COLOR_YELLOW "0. Back\n" <<
                   "1. Returneaza dupa ISBN\n" << ANSI_COLOR_RESET;
         std::cin >> optiune;
-        ClearScreen();
         std::cin.ignore();
     } while(optiune < 0 || optiune > 1);
 
@@ -255,16 +258,17 @@ void menu::AfisareReturnOptiuni() {
         {
             std::string isbn;
             getline(std::cin,isbn);
-            std::cin.ignore();
-//            std::cin.getline(isbn);
             biblioteca.ReturnByISBN(isbn) ? std::cout << ANSI_COLOR_RED << "Nu ai aceasta carte!\n" << ANSI_COLOR_RESET
             : std::cout << ANSI_COLOR_GREEN "Carte returnata cu succes\n" << ANSI_COLOR_RESET;
+            return;
         }
     }
 }
 
+// Porneste loop-ul meniului, care actioneaza ca un fel de shell
 void menu::StartLoop() {
     while (true) {
+        // luam comanda de la utilizator si actionam corespunzator
         auto cmd = GetUserCommand();
         switch (cmd) {
             case list:
@@ -298,6 +302,7 @@ void menu::StartLoop() {
             case borrow:
                 AfisareBorrowOptiuni();
             default:
+                std::cout << ANSI_COLOR_RED << "Comanda inexistenta\n" << ANSI_COLOR_RESET;
                 break;
         }
     }

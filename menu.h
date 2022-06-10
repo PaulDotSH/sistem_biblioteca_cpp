@@ -1,18 +1,12 @@
-//
-// Created by administrator on 4/12/22.
-//
-
 #ifndef SISTEM_BIBLIOTECA_CPP_MENU_H
 #define SISTEM_BIBLIOTECA_CPP_MENU_H
 #include "string"
 #include "biblioteca/biblioteca.h"
 
-//namespace menu {
-//    enum command {NaC,add,del,list,search,ret,borrow,save,quit,help,clear};
-//}
-
 class menu {
 public:
+    // Stocam comenzile posibile intr-un enum pentru a face codul mai citibil
+    // ret -> return, dar return e un reserved keyword, la fel si del -> delete
     enum command {NaC,add,del,list,search,ret,borrow,save,quit,help,clear,load};
 
     command ParseCommand(std::string cmd);
@@ -31,9 +25,9 @@ public:
 
     void StartLoop();
 
+    // Meniul este un singleton, adica doar o singura instata a acestuia poate exista
     static menu& GetInstance() {
-        // Allocate with `new` in case IO is not trivially destructible.
-        static menu* singleton = new menu();
+        static menu* singleton = new menu(); // Instanta este initializata doar cand avem nevoie de un meniu cel putin o data
         return *singleton;
     }
 
@@ -43,7 +37,7 @@ public:
 private:
     menu() = default;
 
-    // Delete copy/move so extra instances can't be created/moved.
+    // Blocam accessul la copy si move operators pentru a mentine proprietatea de singleton
     menu(const menu&) = delete;
     menu& operator=(const menu&) = delete;
     menu(menu&&) = delete;
@@ -51,4 +45,4 @@ private:
 };
 
 
-#endif //SISTEM_BIBLIOTECA_CPP_MENU_H
+#endif

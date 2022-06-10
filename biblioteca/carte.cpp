@@ -1,8 +1,3 @@
-//        {   for (auto& autor : autori)
-
-// Created by administrator on 4/9/22.
-//
-
 #include "carte.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -12,6 +7,7 @@
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+// Functia de display, folosind culori, afiseaza o carte in stdout
 void const Carte::Display() const {
 
     std::cout << ANSI_COLOR_BLUE << "ISBN: " << ISBN << "\nTitlu: " << Title << "\nPagini: " << Pages << "\nPret: " << Price
@@ -27,6 +23,7 @@ void const Carte::Display() const {
     std::cout << ANSI_COLOR_RESET << "\n--------------\n";
 }
 
+// Constructor standard
 Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &authors, std::vector<std::string> &genres,
              int pages, double price, int total, int available) : Pages(pages), Price(price), Total(total), Available(available)
 {
@@ -43,7 +40,7 @@ Carte::Carte(std::string &isbn, std::string &title, std::vector<std::string> &au
 
 #define MAX_LEN 100
 
-//Daca nu primim parametrii, o sa citim de la tastatura inputul
+//Daca nu primim parametrii, o sa citim din stdin inputul
 Carte::Carte() {
     char inp[MAX_LEN];
     {
@@ -60,8 +57,8 @@ Carte::Carte() {
 
     std::cout << "Introdu numarul de autori\n";
     std::cin >> authorsNr;
-    std::cin.get(); //de fiecare data cand dam cin la un int trb dat cin.get sau cin.ignore ca altfel o sa ne ia un empty string
-    Authors.reserve(authorsNr); //alocam direct nr de elemente deoarece il stim deja
+    std::cin.get(); //de fiecare data cand dam cin la un int trb dat cin.get sau cin.ignore pentru a evita un trailing \n
+    Authors.reserve(authorsNr); // alocam direct nr de elemente deoarece il stim deja
     authorsNr++;
 
     for (int i = 1; i < authorsNr; i++) {
@@ -97,6 +94,7 @@ Carte::Carte() {
     std::cout << ANSI_COLOR_RESET;
 }
 
+// Returnam un obiect json cu cartea
 nlohmann::json Carte::GetJson() {
     nlohmann::json json;
     json["isbn"] = ISBN;
@@ -110,6 +108,7 @@ nlohmann::json Carte::GetJson() {
     return json;
 }
 
+// Constructor din json
 Carte::Carte(nlohmann::json& json) {
     ISBN = json["isbn"];
     Title = json["title"];
@@ -125,6 +124,7 @@ Carte::Carte(nlohmann::json& json) {
     Total = json["Total"];
 }
 
+// Overload ostream
 std::ostream &operator<<(std::ostream &os, const Carte &carte) {
     // Daca stream-ul este stdout atunci afisam cu culori
     if (os.rdbuf() == std::cout.rdbuf()) {

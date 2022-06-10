@@ -1,7 +1,3 @@
-//
-// Created by administrator on 4/9/22.
-//
-
 #ifndef SISTE_BIBLIOTECA_CPP_CARTE_H
 #define SISTE_BIBLIOTECA_CPP_CARTE_H
 
@@ -17,8 +13,9 @@ public:
     std::string Title;
     std::vector<std::string> Authors;
     std::vector<std::string> Genres;
-    unsigned int Pages;
     double Price;
+    // Puteam folosi si size_t
+    unsigned int Pages;
     unsigned int Total;
     unsigned int Available;
     void const Display() const;
@@ -33,8 +30,9 @@ public:
 
     nlohmann::json GetJson();
 
+    // Toate obiectele au destructori sau sunt primitive, deci nu avem nevoie de un destructor
     ~Carte() = default;
 private:
 };
 
-#endif //SISTE_BIBLIOTECA_CPP_CARTE_H
+#endif
