@@ -1,0 +1,3 @@
+/home/admin/git-stuff/sistem_biblioteca_cpp/CMakeFiles/sistem_biblioteca_cpp.dir
+/home/admin/git-stuff/sistem_biblioteca_cpp/CMakeFiles/edit_cache.dir
+/home/admin/git-stuff/sistem_biblioteca_cpp/CMakeFiles/rebuild_cache.dir

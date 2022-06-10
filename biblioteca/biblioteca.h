@@ -1,7 +1,3 @@
-//
-// Created by administrator on 4/9/22.
-//
-
 #ifndef SISTE_BIBLIOTECA_CPP_BIBLIOTECA_H
 #define SISTE_BIBLIOTECA_CPP_BIBLIOTECA_H
 
@@ -11,7 +7,6 @@
 #include <functional>
 #include <ostream>
 
-//mergem pe un sistem similar cu cel din go, in care vom folosi un bool pentru a returna 1 cand avem o eroare
 class Biblioteca {
 public:
     Biblioteca();
@@ -19,7 +14,6 @@ public:
     explicit Biblioteca(const char* nume);
 
 
-    //Fa inca un append care foloseste list.emplace_back pt carte
     void Append(Carte& carte);
     void Append();
 
@@ -50,15 +44,15 @@ public:
     void SaveCarti(const char*);
     void SaveCarti();
 
-    std::string nume; //folosit pt nume fisier
+    std::string nume; // Folosit pt nume fisier
 
-    ~Biblioteca();
+    ~Biblioteca() = default;
 private:
     std::list<Carte> carti;
-    size_t size = 0; //in append faci asta++
+    size_t size = 0; // In append incrementam cu 1, si in delete decrementam cu 1
 
     std::list<Carte> utilizator;
     size_t userSize = 0;
 };
 
-#endif //SISTE_BIBLIOTECA_CPP_BIBLIOTECA_H
+#endif

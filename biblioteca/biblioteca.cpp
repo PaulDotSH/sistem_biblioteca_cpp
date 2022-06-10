@@ -1,7 +1,3 @@
-//
-// Created by administrator on 4/9/22.
-//
-
 #include "biblioteca.h"
 #include <functional>
 #include <iostream>
@@ -9,12 +5,14 @@
 
 Biblioteca::Biblioteca(std::string& Nume) : nume(Nume) {}
 
+// Functiile de tip "FindCarteBy" vor returna o referinta la o carte din biblioteca in functie de o conditie
 Carte* Biblioteca::FindCarteByIsbn(std::string &isbn) {
     for (auto& carte : carti)
         if (carte.ISBN == isbn) return &carte;
     return nullptr;
 }
 
+// Functia display afiseaza si culori, folosim Display pentru a afisa o "biblioteca" in stdout
 void const Biblioteca::Display() const {
     int index=0;
     for (auto& carte : carti) {
@@ -79,6 +77,9 @@ bool Biblioteca::BorrowByISBN(std::string& ISBN) {
     return true;
 }
 
+// Functiile de tip "ByCriteriu" primesc o functie care primeste ca parametru o referinta la o carte
+// care este cartea prin care se itereaza, si fac o actiune depinzand de bool-ul returnat
+// de exemplu in acest caz, o carte este imprumutata daca criteriul este valid
 bool Biblioteca::BorrowByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     for (auto& carte : carti) {
         if (criteriu(carte)) {
@@ -99,7 +100,7 @@ bool Biblioteca::ReturnByISBN(std::string& ISBN) {
         }
     }
 
-    if (CarteUser == utilizator.end()) return true; //daca nu am gasit cartea in lista cu utilizatorul
+    if (CarteUser == utilizator.end()) return true; // Daca nu am gasit cartea in lista cu utilizatorul
 
     for (auto& carte : carti) {
         if (carte.ISBN == ISBN) {
@@ -119,18 +120,20 @@ void Biblioteca::Append(Carte &carte) {
     this->size++;
 }
 
-Carte *Biblioteca::FindCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
+// Returnam o carte cu un pointer deoarece putem returna nullptr in cazul in care o carte nu este gasita
+Carte* Biblioteca::FindCarteByCriteriu(const std::function <bool (Carte&)>& criteriu) {
     for (auto& carte : carti)
         if (criteriu(carte)) return &carte;
     return nullptr;
 }
 
-//Ia o noua carte de la tastatura
+// Citeste o carte noua din stdin
 void Biblioteca::Append() {
     carti.emplace_back(Carte());
     this->size++;
 }
 
+// Parsam clasa biblioteca intr-un json si il tirmite in stream-ul primit
 void Biblioteca::SaveCarti(std::ostream& stream) {
     nlohmann::json json;
     for (Carte& carte : carti) {
@@ -158,6 +161,7 @@ void Biblioteca::SaveCarti(const std::string& file) {
     SaveCarti(stream);
 }
 
+// Dam parse din json in clasa biblioteca dintr-un stream
 void Biblioteca::ReadCarti(std::istream& stream) {
     nlohmann::json json;
     stream >> json;
@@ -192,12 +196,6 @@ void Biblioteca::ReadCarti(const char* file) {
 }
 
 Biblioteca::Biblioteca(const char* Nume) : nume(Nume) {}
-
-//Cam useless deoarece oricum listele se sterg singure
-Biblioteca::~Biblioteca() {
-    this->carti.clear();
-    this->utilizator.clear();
-}
 
 void Biblioteca::ReadCarti() {
     ReadCarti(this->nume);
