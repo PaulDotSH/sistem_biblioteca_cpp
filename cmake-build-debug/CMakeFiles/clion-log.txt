@@ -1,4 +1,0 @@
-/home/admin/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/admin/git-stuff/sistem_biblioteca_cpp -B /home/admin/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/admin/git-stuff/sistem_biblioteca_cpp/cmake-build-debug
